@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+{%for c in carts%}
+
+<div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-5">
+            {% if c.product.image %}
+            <img class="card-img-top mb-5 mb-md-0" src="{{ c.product.image.url }}" alt="Product Image" width="200"
+                height="300" />
+            {% else %}
+            <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg"
+                alt="Placeholder Image" width="200" height="300" />
+            {% endif %}
+        </div>
+
+        <div class="col-md-5">
+            <div class="small mb-1">SKU: BST-498</div>
+            <h6 class="display-5 fw-bolder">{{c.product.product_name}}</h6>
+            <div class="fs-5 mb-5">
+                <h3><span class="">Price : {{c.product.price}} INR</span></h3>
+            </div>
+            <h6 class="display-5 fw-bolder" style="font-size: 20px;">Status : {{c.status}}</h6>
+            <h6 class="display-5 fw-bolder" style="font-size: 20px;">Quantity : {{c.qty}}</h6>
+        </div>
+        <div class="col-md-2">
+            <a href="{%url 'make-order' c.id%}" class="btn btn-warning">Place Order</a>
+            <a href="{%url 'cart-change' c.id%}" class="btn btn-dark">Cancel</a>
+        </div>
+    </div>
+
+</div>
+
+
+{%endfor%}
+
+{%endblock%}
